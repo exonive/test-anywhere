@@ -1,6 +1,6 @@
 /**
- * @name Amazon product search
- * @desc Searches Amazon.com for a product and checks if the results show up
+ * @name GoDaddy domain search
+ * @desc Searches GoDaddy.com for a domain and checks if the results show up
  */
 
 const assert = require('assert')
@@ -15,31 +15,35 @@ before(async () => {
   page = await browser.newPage()
 })
 
-describe('Amazon Homepage', () => {
-  it('has search input', async () => {
-    await page.setViewport({
-      width: 1280,
-      height: 800
-    })
-    await page.goto('https://www.amazon.com', {
-      waitUntil: 'networkidle0'
-    })
-    const searchInput = await page.$('#twotabsearchtextbox')
-    assert.ok(searchInput)
-    // await page.screenshot({
-    //   path: 'amz.png'
-    // })
-  }).timeout(20000)
+describe('UI: ', () => {
 
-  it('shows search results after search input', async () => {
-    await page.type('#twotabsearchtextbox', 'nyan cat pullover')
-    await page.click('input.nav-input')
-    await page.waitForSelector('#resultsCol')
-    const firstProduct = await page.$('a.a-link-normal.a-text-normal')
-    assert.ok(firstProduct)
-  }).timeout(10000)
-})
+  describe('GoDaddy Homepage', () => {
+    it('has search input', async () => {
+      await page.setViewport({
+        width: 1280,
+        height: 800
+      })
+      await page.goto('https://www.godaddy.com', {
+        waitUntil: 'networkidle0'
+      })
+      const searchInput = await page.$('.domain-name-input')
+      assert.ok(searchInput)
+    })
 
-after(async () => {
-  await browser.close()
+    it('shows search results after search input and verify unavilability', async () => {
+      await page.type('.domain-name-input', 'usa.com')
+      await page.click('.input-group-btn .btn-purchase')
+      await page.waitForSelector('#searchResults')
+      const domainStatus = await page.evaluate(el => el.innerText, await page.$('#searchResults'));
+      assert.ok(domainStatus.includes('taken'));
+      console.log(domainStatus)
+    })
+
+
+  })
+
+  after(async () => {
+    await browser.close()
+  })
+
 })
