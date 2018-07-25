@@ -1,0 +1,18 @@
+{
+  "name": "test-anywhere",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive test --timeout 50000"
+  },
+  "author": "naren@godaddy.com",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "4.1.2",
+    "http-server": "0.10.0",
+    "lodash": "4.17.4",
+    "mocha": "4.0.1",
+    "puppeteer": "0.13.0"
+  }
+}
