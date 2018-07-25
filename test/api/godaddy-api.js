@@ -9,7 +9,7 @@
 const assert = require('assert')
 const axios = require('axios')
 
-describe('API', () => {
+describe('[ API ]', () => {
 
   before(async () => {
 

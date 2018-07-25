@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive test --timeout 50000"
+    "test": "mocha --recursive test --timeout 50000 --reporter spec",
+    "test-ci": "MOCHA_FILE=./results/test-results.xml mocha --recursive test --timeout 50000 --reporter mocha-junit-reporter"
   },
   "author": "naren@godaddy.com",
   "license": "ISC",
@@ -12,6 +13,7 @@
     "axios": "^0.18.0",
     "chai": "4.1.2",
     "mocha": "4.0.1",
+    "mocha-junit-reporter": "^1.17.0",
     "puppeteer": "0.13.0"
   }
 }

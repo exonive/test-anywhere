@@ -15,7 +15,7 @@ before(async () => {
   page = await browser.newPage()
 })
 
-describe('UI: ', () => {
+describe('[ UI ] ', () => {
 
   describe('GoDaddy Homepage', () => {
     it('has search input', async () => {
